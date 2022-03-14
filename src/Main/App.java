@@ -1,6 +1,6 @@
 package Main;
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.ArrayList;
 
 
 public class App {
@@ -10,9 +10,20 @@ public class App {
 	}
 	
 	public static String getRandomValue(String[] list){
-	Random rand = new Random();
-	int randomNumber = rand.nextInt(list.length);
-	String resultString = list[randomNumber];
-	return resultString;
+		Random rand = new Random();
+		int randomNumber = rand.nextInt(list.length);
+		String resultString = list[randomNumber];
+		return resultString;
+	}
+	
+	public static String getRandomValueString(String[] list, String previousItem) {
+		Random rand = new Random();
+		int randomNumber = rand.nextInt(list.length);
+		String resultString = list[randomNumber];
+		while(resultString == previousItem) {
+			randomNumber = rand.nextInt(list.length);
+			resultString = list[randomNumber]; 
+		}
+		return resultString;
 	}
 }
