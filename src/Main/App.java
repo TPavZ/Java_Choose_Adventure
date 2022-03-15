@@ -1,6 +1,7 @@
 package Main;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class App {
@@ -25,5 +26,13 @@ public class App {
 			resultString = list[randomNumber]; 
 		}
 		return resultString;
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String newString = System.getProperty("line.separator");
+		String[] settings = {"Milwaukee", "Tampa", "Denver"};
+		String[] weapons = {"Gun", "Knife", "Hammer"};
+		String[] villains = {"Agent Smith", "Palpatine", "Voldemort"};
 	}
 }
