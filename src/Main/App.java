@@ -5,15 +5,14 @@ import java.util.Scanner;
 
 
 public class App {
-	
 	public static String getRandomValue(String[] list){
 		Random rand = new Random();
 		int randomNumber = rand.nextInt(list.length);
 		String resultString = list[randomNumber];
 		return resultString;
-	}
+	};
 	
-	public static String getRandomValueString(String[] list, String previousItem) {
+	public static String getNewRandomValue(String[] list, String previousItem) {
 		Random rand = new Random();
 		int randomNumber = rand.nextInt(list.length);
 		String resultString = list[randomNumber];
@@ -22,11 +21,11 @@ public class App {
 			resultString = list[randomNumber]; 
 		}
 		return resultString;
-	}
+	};
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String newString = System.getProperty("line.separator");
+		//String newString = System.getProperty("line.separator");
 		String[] settings = {"Milwaukee", "Tampa", "Denver"};
 		String[] weapons = {"Gun", "Knife", "Hammer"};
 		String[] villains = {"Agent Smith", "Palpatine", "Voldemort"};
@@ -34,16 +33,51 @@ public class App {
 		String settingsString = getRandomValue(settings);
 		String weaponsString = getRandomValue(weapons);
 		String villainsString = getRandomValue(villains);
-		
+	
 		ArrayList<String> myAdventure = new ArrayList<String>(); // Create an ArrayList object
 		myAdventure.add(settingsString);
 		myAdventure.add(weaponsString);
 		myAdventure.add(villainsString);
-		
+
 		System.out.println("Completed Adventue:");
+		for(String nameString : myAdventure) {
+			System.out.println(nameString);
+		}
+		
+//		while loop for confirming adventure
+		boolean confirmed = false;
+		while(confirmed == false){
+			System.out.println("Would you like to modify the adventure?" + "\n" + "Type: 0 - For NO, 1 - for Setting, 2 - for Weapon, & 3 - for Villian.");
+			int response = sc.nextInt();
+			switch(response) {
+				case 0:
+					System.out.println("Done!" + "\n" + "Thank you for adventuring.");
+					confirmed = true;
+					break;
+				case 1:
+					//String currentSettingsString = myAdventure.get(0);
+					String updateSettingsString = getNewRandomValue(settings, myAdventure.get(0));
+					myAdventure.set(0, updateSettingsString);
+					System.out.println("New Adventure" + "\n" + updateSettingsString + "\n" + myAdventure.get(1) + "\n" + myAdventure.get(2));
+					break;
+				case 2:
+					//String currentWeaponsString = myAdventure.get(1);
+					String updateWeaponsString = getNewRandomValue(weapons, myAdventure.get(1));
+					myAdventure.set(1, updateWeaponsString);
+					System.out.println("New Adventure" + "\n" + myAdventure.get(0) + "\n" + updateWeaponsString + "\n" + myAdventure.get(2));
+					break;
+				case 3:
+					//String currentVillainsString = myAdventure.get(2);
+					String updateVillainsString = getNewRandomValue(villains, myAdventure.get(2));
+					myAdventure.set(2, updateVillainsString );
+					System.out.println("New Adventure" + "\n" + myAdventure.get(0) + "\n" + myAdventure.get(1) + "\n" + updateVillainsString);
+					break;
+			};	
+			
+		};
+	
 	}
-	
-	
+
 }
 
 // 		*Java Choose Your Own Adventure*
